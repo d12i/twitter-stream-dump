@@ -28,7 +28,9 @@ fn main() {
     let n = env::args().skip(1).next().map_or(2, |s| s.parse().unwrap());
 
     let handles: Vec<_> = (0..n).map(|i| {
-        dump_to(&format!("target/stream_{}.dat", i))
+        let path = format!("target/stream_{}.dat", i);
+        println!("dumping into `{}`...", path);
+        dump_into(&path)
     }).collect();
 
     for jh in handles {
@@ -37,7 +39,7 @@ fn main() {
 }
 
 /// Connects to a Streaming API endpoint and dumps the raw response body into a file.
-fn dump_to(filename: &str) -> JoinHandle<()> {
+fn dump_into(filename: &str) -> JoinHandle<()> {
     let mut res = listen();
     let mut f = File::create(filename).unwrap();
 
