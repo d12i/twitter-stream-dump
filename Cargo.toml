@@ -1,0 +1,9 @@
+[package]
+name = "twitter-stream-dump"
+version = "0.1.0"
+authors = ["Daiki Mizukami <d12i@users.noreply.github.com>"]
+
+[dependencies]
+hyper = "0.9"
+oauthcli = "1"
+url = "1"
